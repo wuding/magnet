@@ -1,0 +1,146 @@
+magnet:?xt=urn:btih:ee42bf83ee0572b1a97ac01f2bf297b61dbc56a5&dn=%E5%9B%BD%E4%BA%A7%E5%8C%BB%E5%AD%A6%E6%95%99%E8%82%B2%20%E5%92%8C%E8%B0%90%E6%80%A7%E7%94%9F%E6%B4%BB%E7%9A%84%E4%BF%9D%E6%8A%A4%E7%A5%9E%20%E5%98%BF%E5%98%BF%2C%E5%8F%A3%E5%91%B3%E5%BE%88%E5%9C%B0%E9%81%93%E5%93%A6&tr=udp%3A%2F%2Ftracker.publicbt.com%3A80&tr=http%3A%2F%2Ftracker.cpleft.com%3A2710%2Fannounce&tr=http%3A%2F%2Fsline.net%3A2710%2Fannounce&tr=http%3A%2F%2Fbt.e-burg.org%3A2710%2Fannounce&tr=http%3A%2F%2Fbigtorrent.org%3A2710%2Fannounce
+
+bt_trackers
+id
+announce
+
+magnet.urlnk.com/btih/ee42bf83ee0572b1a97ac01f2bf297b61dbc56a5
+
+有链 Magnet 磁力链接资源库
+
+
+
+[url_categories]
+id
+sup
+title
+seq
+
+[url_classes]
+id
+sup
+siteId
+title
+class
+categoryId
+seq
+
+[url_entries]
+id
+siteId
+classId
+entry
+
+title
+;url http://btmee.net/show/591488
+size
+
+magnet
+ed2k
+
+intro
+img
+
+modified
+user
+created
+
+[url_magnet]
+id
+
+;xt
+type
+hash
+
+dn
+;tr
+
+url->query
+created
+
+
+
+[url_sites]
+id
+title
+url btmee.net
+note
+
+alexa
+records
+
+entryUrl
+indexUrl
+pageSize
+pageCount
+
+
+[urn_types]
+id
+name
+title
+description
+
+
+
+CREATE TABLE IF NOT EXISTS `url_classes` (
+  `id` int(11) NOT NULL auto_increment,
+  `sup` int(10) default '0',
+  `siteId` int(10) default '0',
+  `title` text,
+  `class` text,
+  `categoryId` int(10) default '0',
+  `seq` int(10) default '0',
+  PRIMARY KEY  (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8;
+
+
+
+CREATE TABLE IF NOT EXISTS `url_entries` (
+  `id` int(11) NOT NULL auto_increment,
+  `siteId` int(10) default '0',
+  `classId` int(10) default '0',
+  `entry` int(10) default '0',
+  `title` text,
+  `size` bigint(15) default '0',
+  `magnet` text,
+  `ed2k` text,
+  `intro` text,
+  `img` text,
+  `modified` int(10) default '0',
+  `user` text,
+  `created` int(10) default '0',
+  PRIMARY KEY  (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8;
+
+
+
+CREATE TABLE IF NOT EXISTS `url_magnet` (
+  `id` int(11) NOT NULL auto_increment,
+  `type` int(2) default '0',
+  `hash` text,
+  `dn` text,
+  `query` text,
+  `created` int(10) default '0',
+  PRIMARY KEY  (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8;
+
+
+
+CREATE TABLE IF NOT EXISTS `url_sites` (
+  `id` int(11) NOT NULL auto_increment,
+  `title` text,
+  `url` text,
+  `note` text,
+  PRIMARY KEY  (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8;
+
+
+
+CREATE TABLE IF NOT EXISTS `urn_types` (
+  `id` int(11) NOT NULL auto_increment,
+  `name` text,
+  `title` text,
+  `description` text,
+  PRIMARY KEY  (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8;

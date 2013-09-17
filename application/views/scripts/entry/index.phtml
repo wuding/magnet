@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <title><?=$r->title?> - 有链磁力资源网 MAGNET.URLNK.COM</title>
+        <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon" />
+    </head>
+    <body>
+        <h4><a href="http://www.urlnk.com">有链</a> &gt; <a href="../">MAGNET</a> &gt; 下载资源 #<?=$r->id?></h4>
+
+
+ <blockquote>
+            <?php
+$pageUrl='';
+if($textUrl){
+        $pageUrl.='q='.$textUrl;
+}
+//if($extension){
+//    if($pageUrl){
+//        $pageUrl.='&';
+//    }
+//    $pageUrl.='extension='.$extension;
+//}
+if(1<$page){
+    if($pageUrl){
+        $pageUrl.='&';
+    }
+    $pageUrl.='page='.$page;
+}
+if($pageUrl){
+        $pageUrl='?'.$pageUrl;
+    }
+?>
+
+        <form action="../search">
+            <span><a href="../search<?=$pageUrl?>">返回</a> 
+                搜索 <input name="q" value="<?=$text?>" style="width:300px;"  />
+                <button type="submit">&crarr;</button></span>
+     <span style="padding-left:30px;">       
+ <?=$total2+1?> / 共 <?=$total?> 
+<? if($r3){ ?><a href="../entry/<?=$r3->id.'.html'.$pageUrl?>">上一个</a> <? } ?> 
+<? if($r2){ ?><a href="../entry/<?=$r2->id.'.html'.$pageUrl?>">下一个</a><? } ?> 
+</span>
+              </form>   
+     </blockquote>
+<h2><?=$r->title?></h2>
+<blockquote>
+            <p>发布时间 <?=date('Y-m-d H:i:s',$r->modified)?></p>
+            <p>大小 <? if($r->size){echo Wuphp::size($r->size);}else{echo '未知';}?></p>            
+            <p><a href="<?=$r->magnet?>" title="Magnet Link">磁力链接</a></p>
+            <textarea style="width:100%;height:60px;"><?=$r->magnet?></textarea>            
+            <? if($r->ed2k){ $ed2k=explode('\r\n',$r->ed2k);?>
+<p>电驴链接</p>
+<ol>
+                <?
+             
+             foreach($ed2k as $ed){
+                 $e=explode('|',$ed)
+                ?>
+                <li><a href="<?=$ed?>"><?=$e[2]?></a></li>
+                <? } ?>
+</ol><textarea style="width:100%;height:60px;"><? foreach($ed2k as $ed){echo $ed.'
+';} ?></textarea>
+            <? } ?>
+<? if($r->intro){ ?>
+                <p>影片介绍</p>
+                <pre style="width:100%;white-space: pre-line;"><?=$r->intro?></pre>
+            <? } ?>
+                <? if($r->img){ 
+                    $img=explode('
+',$r->img);
+             
+             foreach($img as $src){
+                ?>
+                <p><img src="<?=$src?>" style=" max-width: 100%;"/></p>
+                <? }} ?>
+        </blockquote>
+            
+<?php
+        include_once '../application/views/scripts/footer.phtml';
+?>
+    </body>
+</html>

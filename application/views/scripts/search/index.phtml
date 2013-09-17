@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <title><? if($text){ ?>搜索: <?=$text?> - 有链磁力资源网<? }else{?>有链磁力链接资源搜索<?} ?> MAGNET.URLNK.COM</title>
+        <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+    </head>
+    <body>
+        <h4><a href="http://www.urlnk.com">有链</a> &gt; <a href="./">MAGNET</a> &gt; 搜索 <?=$q?></h4>
+        <h1>有链 Magnet 资源搜索</h1>
+
+        <blockquote>
+            <form action="">
+                <input name="q" value="<?=$text?>" style="width:500px;" />
+                <button type="submit">&crarr;</button>
+            </form>
+            <p><?=$min+1?> - <?=$min+$count?> / 共 <?=$total?></p>
+            <ul>
+<?php
+$pageUrl='?';
+$pageUrl2='';
+
+if($textUrl){
+    $pageUrl.='q='.$textUrl.'&';
+    $pageUrl2='?q='.$textUrl;
+    if(1<$page){
+        $pageUrl2.='&page='.$page;
+    }
+    
+}elseif(1<$page){
+        $pageUrl2='?page='.$page;
+    }
+
+
+
+$pageUrl.='page=';
+
+
+
+
+foreach ($all as $r) {
+$filename=$r->title;
+    if($text){
+        $filename=  preg_replace('/('.mysql_escape_string($q).')/im', '<span style="color:#F00;">$1</span>', $filename);
+    }
+    
+?>
+
+<li><a href="entry/<?=$r->id?>.html<?=$pageUrl2?>"><?=$filename?></a></li>
+<?php
+}
+?>                
+            </ul>
+            <? if(1<$pages){ ?>
+                <?=$page?>  / 共 <a href="<?=$pageUrl.$pages?>"><?=$pages?></a>  页 
+                <? } ?>
+                <? if(0<$prevPage){ ?><a href="<?=$pageUrl.$prevPage?>">上一页</a> <? } ?>
+                <? if($pages>=$nextPage){ ?><a href="<?=$pageUrl.$nextPage?>">下一页</a><? } ?>
+        </blockquote>
+<?php
+        include_once '../application/views/scripts/footer.phtml';
+?>
+    </body>
+</html>
